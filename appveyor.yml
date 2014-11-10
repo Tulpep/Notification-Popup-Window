@@ -1,0 +1,36 @@
+# http://www.appveyor.com/docs/appveyor-yml
+
+# version format
+version: 1.0.{build}
+
+# Fix line endings in Windows. (runs before repo cloning)
+init:
+  - git config --global core.autocrlf input
+
+
+# Assembly Info
+assembly_info:
+  patch: true
+  file: AssemblyInfo.*
+  assembly_version: "{version}"
+  assembly_file_version: "{version}"
+  assembly_informational_version: "{version}"
+
+#Build Relase instead of Debug
+configuration: Release
+
+artifacts:
+  - path: Tulpep.NotificationWindow\bin\Release\Tulpep.NotificationWindow.dll
+    name: Tulpep.NotificationWindow.dll
+  - path: '**\*.nupkg'
+    name: Tulpep.NotificationWindow.nupkg
+
+after_test:
+  - ps: .\Nuget\build.ps1
+
+#Publish NuGet
+deploy:
+  provider: NuGet
+  api_key:
+    secure: iMjHg2GzZQKygPbCUobQ3V1cUSO+Bxiyk0S6941I5xEe1/bLNdHAn8A7cUbwM9kT
+    artifact: /.*\.nupkg/
