@@ -5,15 +5,14 @@
       <version>$version$</version>
       <title>Notification Popup Window</title>
       <authors>Simon Baer; Tulpep</authors>
-      <licenseUrl>https://raw.githubusercontent.com/Tulpep/Active-Directory-Dialogs/master/LICENSE</licenseUrl>
-      <projectUrl>https://github.com/Tulpep/Active-Directory-Dialogs</projectUrl>
+      <licenseUrl>https://raw.githubusercontent.com/Tulpep/Notification-Popup-Window/master/LICENSE</licenseUrl>
+      <projectUrl>https://github.com/Tulpep/Notification-Popup-Window</projectUrl>
       <requireLicenseAcceptance>false</requireLicenseAcceptance>
-      <description>Notification Popup Window.</description>
+      <description>Notification Popup Window</description>
       <summary>Notification Popup Window</summary>
-  	  <tags>WinForms Windows Forms NotificationWindow Notification Notifications</tags>
+  	  <tags>WinForms Windows Forms NotificationWindow Notification Notifications Popup Popups</tags>
     </metadata>
     <files>
-      <file src="..\Tulpep.ActiveDirectoryObjectPicker\bin\Release\Tulpep.ActiveDirectoryObjectPicker.dll" target="lib\net35\Tulpep.ActiveDirectoryObjectPicker.dll" />
-      <file src="..\Tulpep.ActiveDirectoryObjectPicker\bin\Release\Interop.ActiveDs.dll" target="lib\net35\Interop.ActiveDs.dll" />
+      <file src="..\Tulpep.NotificationWindow\bin\Release\Tulpep.NotificationWindow.dll" target="lib\net40\Tulpep.NotificationWindow.dll" />
     </files>
 </package>
