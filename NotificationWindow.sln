@@ -5,16 +5,38 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tulpep.NotificationWindow", "Tulpep.NotificationWindow\Tulpep.NotificationWindow.csproj", "{605006EB-D4E6-4312-A293-3A43FAC43240}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoApp", "DemoApp\DemoApp.csproj", "{833625E6-80AC-45E0-8AA4-06BDDEDBEA2F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{605006EB-D4E6-4312-A293-3A43FAC43240}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{605006EB-D4E6-4312-A293-3A43FAC43240}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{605006EB-D4E6-4312-A293-3A43FAC43240}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{605006EB-D4E6-4312-A293-3A43FAC43240}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{605006EB-D4E6-4312-A293-3A43FAC43240}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{605006EB-D4E6-4312-A293-3A43FAC43240}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{605006EB-D4E6-4312-A293-3A43FAC43240}.Release|Any CPU.Build.0 = Release|Any CPU
+		{605006EB-D4E6-4312-A293-3A43FAC43240}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{605006EB-D4E6-4312-A293-3A43FAC43240}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{605006EB-D4E6-4312-A293-3A43FAC43240}.Release|x86.ActiveCfg = Release|Any CPU
+		{833625E6-80AC-45E0-8AA4-06BDDEDBEA2F}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{833625E6-80AC-45E0-8AA4-06BDDEDBEA2F}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{833625E6-80AC-45E0-8AA4-06BDDEDBEA2F}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{833625E6-80AC-45E0-8AA4-06BDDEDBEA2F}.Debug|x86.ActiveCfg = Debug|x86
+		{833625E6-80AC-45E0-8AA4-06BDDEDBEA2F}.Debug|x86.Build.0 = Debug|x86
+		{833625E6-80AC-45E0-8AA4-06BDDEDBEA2F}.Release|Any CPU.ActiveCfg = Release|x86
+		{833625E6-80AC-45E0-8AA4-06BDDEDBEA2F}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{833625E6-80AC-45E0-8AA4-06BDDEDBEA2F}.Release|Mixed Platforms.Build.0 = Release|x86
+		{833625E6-80AC-45E0-8AA4-06BDDEDBEA2F}.Release|x86.ActiveCfg = Release|x86
+		{833625E6-80AC-45E0-8AA4-06BDDEDBEA2F}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
