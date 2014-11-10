@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
-namespace NotificationWindow
+namespace Tulpep.NotificationWindow
 {
     /// <summary>
     /// This is the form of the actual notification window.

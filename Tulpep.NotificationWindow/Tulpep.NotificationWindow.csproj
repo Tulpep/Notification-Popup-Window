@@ -8,8 +8,8 @@
     <ProjectGuid>{605006EB-D4E6-4312-A293-3A43FAC43240}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NotificationWindow</RootNamespace>
-    <AssemblyName>NotificationWindow</AssemblyName>
+    <RootNamespace>Tulpep.NotificationWindow</RootNamespace>
+    <AssemblyName>Tulpep.NotificationWindow</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("NotificationWindow")]
+[assembly: AssemblyTitle("Tulpep.NotificationWindow")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("NotificationWindow")]
-[assembly: AssemblyCopyright("Copyright © 2011 by Simon B.")]
+[assembly: AssemblyProduct("Tulpep.NotificationWindow")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -56,7 +56,7 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label8 = new System.Windows.Forms.Label();
             this.txtAnimationDuration = new System.Windows.Forms.TextBox();
-            this.popupNotifier1 = new NotificationWindow.PopupNotifier();
+            this.popupNotifier1 = new Tulpep.NotificationWindow.PopupNotifier();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -384,7 +384,7 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtAnimationDuration;
-        private NotificationWindow.PopupNotifier popupNotifier1;
+        private Tulpep.NotificationWindow.PopupNotifier popupNotifier1;
     }
 }
 

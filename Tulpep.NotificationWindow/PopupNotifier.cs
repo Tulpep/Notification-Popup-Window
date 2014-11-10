@@ -12,7 +12,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace NotificationWindow
+namespace Tulpep.NotificationWindow
 {
     /// <summary>
     /// Non-visual component to show a notification window in the right lower
