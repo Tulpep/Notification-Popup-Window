@@ -32,6 +32,16 @@ namespace Tulpep.NotificationWindow
         /// </summary>
         public event EventHandler Close;
 
+        /// <summary>
+        /// Event that is raised when the notification Appears.
+        /// </summary>
+        public event EventHandler Appear;
+
+        /// <summary>
+        /// Event that is raised when the notification Dissapers 
+        /// </summary>
+        public event EventHandler Disappear;
+
         private bool disposed = false;
         private PopupNotifierForm frmPopup;
         private Timer tmrAnimation;
@@ -267,6 +277,7 @@ namespace Tulpep.NotificationWindow
             frmPopup.LinkClick += new EventHandler(frmPopup_LinkClick);
             frmPopup.ContextMenuOpened += new EventHandler(frmPopup_ContextMenuOpened);
             frmPopup.ContextMenuClosed += new EventHandler(frmPopup_ContextMenuClosed);
+            frmPopup.VisibleChanged += new EventHandler(frmPopup_VisibleChanged); 
 
             tmrAnimation = new Timer();
             tmrAnimation.Tick += new EventHandler(tmAnimation_Tick);
@@ -356,6 +367,7 @@ namespace Tulpep.NotificationWindow
             }
         }
 
+
         /// <summary>
         /// The custom options menu has been opened. The window must not be closed
         /// as long as the menu is open.
@@ -394,6 +406,23 @@ namespace Tulpep.NotificationWindow
             if (Close != null)
             {
                 Close(this, EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Visibility has changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmPopup_VisibleChanged(object sender, EventArgs e)
+        {
+            if (frmPopup.Visible)
+            {
+                if (Appear != null) Appear(this, EventArgs.Empty);
+            }
+            else
+            {
+                if (Disappear != null) Disappear(this, EventArgs.Empty);
             }
         }
 
