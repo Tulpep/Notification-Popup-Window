@@ -55,6 +55,7 @@ namespace Tulpep.NotificationWindow
         private int posStop;
         private double opacityStart;
         private double opacityStop;
+        private int realAnimationDuration; 
         private System.Diagnostics.Stopwatch sw;
 
         #region Properties
@@ -317,6 +318,7 @@ namespace Tulpep.NotificationWindow
 
                     tmrWait.Interval = Delay;
                     tmrAnimation.Interval = AnimationInterval;
+                    realAnimationDuration = AnimationDuration;
                     tmrAnimation.Start();
                     sw = System.Diagnostics.Stopwatch.StartNew();
                     System.Diagnostics.Debug.WriteLine("Animation started.");
@@ -325,13 +327,23 @@ namespace Tulpep.NotificationWindow
                 {
                     if (!isAppearing)
                     {
-                        frmPopup.Top = maxPosition;
-                        frmPopup.Opacity = maxOpacity;
-                        tmrAnimation.Stop();
-                        System.Diagnostics.Debug.WriteLine("Animation stopped.");
-                        tmrWait.Stop();
-                        tmrWait.Start();
-                        System.Diagnostics.Debug.WriteLine("Wait timer started.");
+                        frmPopup.Size = Size;
+                        if (Scroll)
+                        {
+                            posStart = frmPopup.Top;
+                            posStop = Screen.PrimaryScreen.WorkingArea.Bottom - frmPopup.Height;
+                        }
+                        else
+                        {
+                            posStart = Screen.PrimaryScreen.WorkingArea.Bottom - frmPopup.Height;
+                            posStop = Screen.PrimaryScreen.WorkingArea.Bottom - frmPopup.Height;
+                        }
+                        opacityStart = frmPopup.Opacity;
+                        opacityStop = 1;
+                        isAppearing = true;
+                        realAnimationDuration = Math.Max((int) sw.ElapsedMilliseconds,1);
+                        sw.Restart();
+                        System.Diagnostics.Debug.WriteLine("Animation direction changed.");
                     }
                     frmPopup.Invalidate();
                 }
@@ -435,15 +447,15 @@ namespace Tulpep.NotificationWindow
         {
             long elapsed = sw.ElapsedMilliseconds;
 
-            int posCurrent = (int)(posStart + ((posStop - posStart) * elapsed / AnimationDuration));
+            int posCurrent = (int)(posStart + ((posStop - posStart) * elapsed / realAnimationDuration));
             bool neg = (posStop - posStart) < 0;
             if ((neg && posCurrent < posStop) ||
                 (!neg && posCurrent > posStop))
             {
                 posCurrent = posStop;
             }
-                
-            double opacityCurrent = opacityStart + ((opacityStop - opacityStart) * elapsed / AnimationDuration);
+
+            double opacityCurrent = opacityStart + ((opacityStop - opacityStart) * elapsed / realAnimationDuration);
             neg = (opacityStop - opacityStart) < 0;
             if ((neg && opacityCurrent < opacityStop) ||
                 (!neg && opacityCurrent > opacityStop))
@@ -455,15 +467,8 @@ namespace Tulpep.NotificationWindow
             frmPopup.Opacity = opacityCurrent;
             
             // animation has ended
-            if (elapsed > AnimationDuration)
+            if (elapsed > realAnimationDuration)
             {
-                int posTemp = posStart;
-                posStart = posStop;
-                posStop = posTemp;
-
-                double opacityTemp = opacityStart;
-                opacityStart = opacityStop;
-                opacityStop = opacityTemp;
 
                 sw.Reset();
                 tmrAnimation.Stop();
@@ -471,6 +476,21 @@ namespace Tulpep.NotificationWindow
 
                 if (isAppearing)
                 {
+                    if (Scroll)
+                    {
+                        posStart = Screen.PrimaryScreen.WorkingArea.Bottom - frmPopup.Height;
+                        posStop = Screen.PrimaryScreen.WorkingArea.Bottom;
+                    }
+                    else
+                    {
+                        posStart = Screen.PrimaryScreen.WorkingArea.Bottom - frmPopup.Height;
+                        posStop = Screen.PrimaryScreen.WorkingArea.Bottom - frmPopup.Height;
+                    }
+                    opacityStart = 1;
+                    opacityStop = 0;
+
+                    realAnimationDuration = AnimationDuration;
+
                     isAppearing = false;
                     maxPosition = frmPopup.Top;
                     maxOpacity = frmPopup.Opacity;
