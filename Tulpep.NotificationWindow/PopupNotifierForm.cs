@@ -19,6 +19,29 @@ namespace Tulpep.NotificationWindow
     /// </summary>
     internal class PopupNotifierForm : System.Windows.Forms.Form
     {
+    /// <summary>
+    /// This prevents the Popup from Activating
+    /// </summary>
+        protected override bool ShowWithoutActivation
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                //make sure Top Most property on form is set to false
+                //otherwise this doesn't work
+                int WS_EX_TOPMOST = 0x00000008;
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= WS_EX_TOPMOST;
+                return cp;
+            }
+        }
         /// <summary>
         /// Event that is raised when the text is clicked.
         /// </summary>
