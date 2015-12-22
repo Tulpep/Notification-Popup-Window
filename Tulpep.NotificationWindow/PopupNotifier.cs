@@ -313,7 +313,7 @@ namespace Tulpep.NotificationWindow
 
                     frmPopup.Opacity = opacityStart;
                     frmPopup.Location = new Point(Screen.PrimaryScreen.WorkingArea.Right - frmPopup.Size.Width - 1, posStart);
-                    frmPopup.Show();
+                    frmPopup.Visible = true;
                     isAppearing = true;
 
                     tmrWait.Interval = Delay;
