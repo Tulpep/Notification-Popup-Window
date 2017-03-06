@@ -55,7 +55,7 @@ namespace Tulpep.NotificationWindow
         private int posStop;
         private double opacityStart;
         private double opacityStop;
-        private int realAnimationDuration; 
+        private int realAnimationDuration;
         private System.Diagnostics.Stopwatch sw;
 
         #region Properties
@@ -103,7 +103,7 @@ namespace Tulpep.NotificationWindow
         [Category("Title")]
         [Description("Font of the title.")]
         public Font TitleFont { get; set; }
-        
+
         [Category("Image")]
         [Description("Size of the icon image.")]
         public Size ImageSize
@@ -235,6 +235,9 @@ namespace Tulpep.NotificationWindow
         [Description("Size of the window.")]
         public Size Size { get; set; }
 
+        [Category("Content")]
+        [Description("Show Content Right To Left,نمایش پیغام چپ به راست فعال شود")]
+        public bool IsRightToLeft { get; set; }
         #endregion
 
         /// <summary>
@@ -278,7 +281,7 @@ namespace Tulpep.NotificationWindow
             frmPopup.LinkClick += new EventHandler(frmPopup_LinkClick);
             frmPopup.ContextMenuOpened += new EventHandler(frmPopup_ContextMenuOpened);
             frmPopup.ContextMenuClosed += new EventHandler(frmPopup_ContextMenuClosed);
-            frmPopup.VisibleChanged += new EventHandler(frmPopup_VisibleChanged); 
+            frmPopup.VisibleChanged += new EventHandler(frmPopup_VisibleChanged);
 
             tmrAnimation = new Timer();
             tmrAnimation.Tick += new EventHandler(tmAnimation_Tick);
@@ -341,7 +344,7 @@ namespace Tulpep.NotificationWindow
                         opacityStart = frmPopup.Opacity;
                         opacityStop = 1;
                         isAppearing = true;
-                        realAnimationDuration = Math.Max((int) sw.ElapsedMilliseconds,1);
+                        realAnimationDuration = Math.Max((int)sw.ElapsedMilliseconds, 1);
                         sw.Restart();
                         System.Diagnostics.Debug.WriteLine("Animation direction changed.");
                     }
@@ -465,7 +468,7 @@ namespace Tulpep.NotificationWindow
 
             frmPopup.Top = posCurrent;
             frmPopup.Opacity = opacityCurrent;
-            
+
             // animation has ended
             if (elapsed > realAnimationDuration)
             {

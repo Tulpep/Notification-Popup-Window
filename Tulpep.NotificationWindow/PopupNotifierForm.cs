@@ -19,9 +19,9 @@ namespace Tulpep.NotificationWindow
     /// </summary>
     internal class PopupNotifierForm : System.Windows.Forms.Form
     {
-    /// <summary>
-    /// This prevents the Popup from Activating
-    /// </summary>
+        /// <summary>
+        /// This prevents the Popup from Activating
+        /// </summary>
         protected override bool ShowWithoutActivation
         {
             get
@@ -367,21 +367,39 @@ namespace Tulpep.NotificationWindow
                 e.Graphics.DrawImage(Parent.Image, Parent.ImagePadding.Left, Parent.HeaderHeight + Parent.ImagePadding.Top, Parent.ImageSize.Width, Parent.ImageSize.Height);
             }
 
-            // calculate height of title
-            heightOfTitle = (int)e.Graphics.MeasureString("A", Parent.TitleFont).Height;
-            int titleX = Parent.TitlePadding.Left;
-            if (Parent.Image != null)
+
+            if (Parent.IsRightToLeft)
             {
-                titleX += Parent.ImagePadding.Left + Parent.ImageSize.Width + Parent.ImagePadding.Right;
+                heightOfTitle = (int)e.Graphics.MeasureString("A", Parent.TitleFont).Height;
+
+                // the value 30 is because of x close icon
+                int titleX2 = this.Width - 30;// Parent.TitlePadding.Right;
+
+                // draw title right to left
+                StringFormat headerFormat = new StringFormat(StringFormatFlags.DirectionRightToLeft);
+                e.Graphics.DrawString(Parent.TitleText, Parent.TitleFont, brushTitle, titleX2, Parent.HeaderHeight + Parent.TitlePadding.Top, headerFormat);
+
+                // draw content text, optionally with a bold part
+                this.Cursor = mouseOnLink ? Cursors.Hand : Cursors.Default;
+                Brush brushText = mouseOnLink ? brushLinkHover : brushContent;
+
+                // draw content right to left
+                StringFormat contentFormat = new StringFormat(StringFormatFlags.DirectionRightToLeft);
+                e.Graphics.DrawString(Parent.ContentText, Parent.ContentFont, brushText, RectContentText, contentFormat);
             }
-
-            // draw title
-            e.Graphics.DrawString(Parent.TitleText, Parent.TitleFont, brushTitle, titleX, Parent.HeaderHeight + Parent.TitlePadding.Top);
-
-            // draw content text, optionally with a bold part
-            this.Cursor = mouseOnLink ? Cursors.Hand : Cursors.Default;
-            Brush brushText = mouseOnLink ? brushLinkHover : brushContent;
-            e.Graphics.DrawString(Parent.ContentText, Parent.ContentFont, brushText, RectContentText);
+            else
+            {
+                // calculate height of title
+                heightOfTitle = (int)e.Graphics.MeasureString("A", Parent.TitleFont).Height;
+                int titleX = Parent.TitlePadding.Left;
+                if (Parent.Image != null)
+                    titleX += Parent.ImagePadding.Left + Parent.ImageSize.Width + Parent.ImagePadding.Right;
+                e.Graphics.DrawString(Parent.TitleText, Parent.TitleFont, brushTitle, titleX, Parent.HeaderHeight + Parent.TitlePadding.Top);
+                // draw content text, optionally with a bold part
+                this.Cursor = mouseOnLink ? Cursors.Hand : Cursors.Default;
+                Brush brushText = mouseOnLink ? brushLinkHover : brushContent;
+                e.Graphics.DrawString(Parent.ContentText, Parent.ContentFont, brushText, RectContentText);
+            }
         }
 
         /// <summary>
