@@ -4,11 +4,6 @@ Notification Popup Window Nuget [![Build status](https://ci.appveyor.com/api/pro
 
 ![Screenshot](Screenshots/example1.png)
 
-It also supports the right to left languages like Persian and Arabic.
-<br />
-![Screenshot](Screenshots/example2.png)
-
-
 This project is based on a [Notification Window](http://www.codeproject.com/Articles/277584/Notification-Window) created in 2011 by Simon Baer. It is also base in [Office 2003-like popup notifier](http://www.codeproject.com/Articles/13547/An-Office-like-popup-notifier) created in 2006 by Nicolas Wälti.
 
 ###Features:
@@ -19,6 +14,9 @@ This project is based on a [Notification Window](http://www.codeproject.com/Arti
 - Set all paddings around icon, title and content
 - Sptionally display a close button
 - Optionally display a button which opens a context menu
+- Supports right to left languages like Persian and Arabic
+
+![Screenshot](Screenshots/example2.png)
 
 ###How to use it
 You can install the lastest version using [NuGet](https://www.nuget.org/packages/Tulpep.NotificationWindow/)
@@ -31,7 +29,9 @@ And use it this way:
 var popupNotifier = new PopupNotifier();
 popupNotifier.TitleText = "Title of popup";
 popupNotifier.ContentText  = "Content text";
+popupNotifier.IsRightToLeft = false;
 popupNotifier.Popup();
+
 
 ```
 This repository contains a Visual Studio Test Project if you want a working example.
