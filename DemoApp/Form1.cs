@@ -31,7 +31,7 @@ namespace DemoApp
             popupNotifier1.ContentPadding = new Padding(int.Parse(txtPaddingContent.Text));
             popupNotifier1.ImagePadding = new Padding(int.Parse(txtPaddingIcon.Text));
             popupNotifier1.Scroll = chkScroll.Checked;
-            
+            popupNotifier1.IsRightToLeft = chkIsRightToLeft.Checked;
             if (chkIcon.Checked)
             {
                 popupNotifier1.Image = Properties.Resources._157_GetPermission_48x48_72;

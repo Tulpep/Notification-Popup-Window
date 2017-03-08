@@ -4,6 +4,10 @@ Notification Popup Window Nuget [![Build status](https://ci.appveyor.com/api/pro
 
 ![Screenshot](Screenshots/example1.png)
 
+It also supports the right to left languages like Persian and Arabic.
+<br />
+![Screenshot](Screenshots/example2.png)
+
 
 This project is based on a [Notification Window](http://www.codeproject.com/Articles/277584/Notification-Window) created in 2011 by Simon Baer. It is also base in [Office 2003-like popup notifier](http://www.codeproject.com/Articles/13547/An-Office-like-popup-notifier) created in 2006 by Nicolas Wälti.
 
