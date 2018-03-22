@@ -158,3 +158,4 @@ $RECYCLE.BIN/
 #Nuget builder process
 nuget.exe
 *.nupkg
+/.vs

@@ -11,6 +11,7 @@ using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Runtime.InteropServices;
 
 namespace Tulpep.NotificationWindow
 {
@@ -22,6 +23,33 @@ namespace Tulpep.NotificationWindow
     [DefaultEvent("Click")]
     public class PopupNotifier : Component
     {
+        #region Windows API
+        private const int SW_SHOWNOACTIVATE = 4;
+        private const int HWND_TOPMOST = -1;
+        private const uint SWP_NOACTIVATE = 0x0010;
+
+        [DllImport("user32.dll", EntryPoint = "SetWindowPos")]
+        static extern bool SetWindowPos(
+         int hWnd,             // Window handle
+         int hWndInsertAfter,  // Placement-order handle
+         int X,                // Horizontal position
+         int Y,                // Vertical position
+         int cx,               // Width
+         int cy,               // Height
+         uint uFlags);         // Window positioning flags
+
+        [DllImport("user32.dll")]
+        static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+        static void ShowInactiveTopmost(Form frm)
+        {
+            ShowWindow(frm.Handle, SW_SHOWNOACTIVATE);
+            SetWindowPos(frm.Handle.ToInt32(), HWND_TOPMOST,
+            frm.Left, frm.Top, frm.Width, frm.Height,
+            SWP_NOACTIVATE);
+        }
+        #endregion
+
         /// <summary>
         /// Event that is raised when the text in the notification window is clicked.
         /// </summary>
@@ -270,8 +298,7 @@ namespace Tulpep.NotificationWindow
             AnimationDuration = 1000;
             Size = new Size(400, 100);
 
-            frmPopup = new PopupNotifierForm(this);
-            frmPopup.TopMost = true;
+            frmPopup = new PopupNotifierForm(this);            
             frmPopup.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             frmPopup.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             frmPopup.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -316,7 +343,7 @@ namespace Tulpep.NotificationWindow
 
                     frmPopup.Opacity = opacityStart;
                     frmPopup.Location = new Point(Screen.PrimaryScreen.WorkingArea.Right - frmPopup.Size.Width - 1, posStart);
-                    frmPopup.Visible = true;
+                    ShowInactiveTopmost(frmPopup);                    
                     isAppearing = true;
 
                     tmrWait.Interval = Delay;
