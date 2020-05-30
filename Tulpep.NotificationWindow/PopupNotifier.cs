@@ -620,6 +620,7 @@ namespace Tulpep.NotificationWindow
                     tmrWait.Tick -= tmWait_Tick;
                     tmrAnimation.Dispose();
                     tmrWait.Dispose();
+
                 }
                 disposed = true;
             }
