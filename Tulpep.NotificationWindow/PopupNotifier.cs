@@ -9,9 +9,9 @@
 
 using System;
 using System.ComponentModel;
-using System.Windows.Forms;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace Tulpep.NotificationWindow
 {
@@ -76,6 +76,7 @@ namespace Tulpep.NotificationWindow
         private Timer tmrWait;
 
         private bool isAppearing = true;
+        private bool markedForDisposed = false;
         private bool mouseIsOn = false;
         private int maxPosition;
         private double maxOpacity;
@@ -298,7 +299,7 @@ namespace Tulpep.NotificationWindow
             AnimationDuration = 1000;
             Size = new Size(400, 100);
 
-            frmPopup = new PopupNotifierForm(this);            
+            frmPopup = new PopupNotifierForm(this);
             frmPopup.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             frmPopup.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             frmPopup.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -343,7 +344,7 @@ namespace Tulpep.NotificationWindow
 
                     frmPopup.Opacity = opacityStart;
                     frmPopup.Location = new Point(Screen.PrimaryScreen.WorkingArea.Right - frmPopup.Size.Width - 1, posStart);
-                    ShowInactiveTopmost(frmPopup);                    
+                    ShowInactiveTopmost(frmPopup);
                     isAppearing = true;
 
                     tmrWait.Interval = Delay;
@@ -390,6 +391,10 @@ namespace Tulpep.NotificationWindow
             tmrAnimation.Stop();
             tmrWait.Stop();
             frmPopup.Hide();
+            if (markedForDisposed)
+            {
+                Dispose();
+            }
         }
 
         /// <summary>
@@ -534,6 +539,8 @@ namespace Tulpep.NotificationWindow
                 else
                 {
                     frmPopup.Hide();
+                    if (markedForDisposed)
+                        Dispose();
                 }
             }
         }
@@ -600,9 +607,21 @@ namespace Tulpep.NotificationWindow
         {
             if (!disposed)
             {
-                if (disposing && frmPopup != null)
+                if (isAppearing)
                 {
-                    frmPopup.Dispose();
+                    markedForDisposed = true;
+                    return;
+                }
+
+                if (disposing)
+                {
+                    if (frmPopup != null)
+                        frmPopup.Dispose();
+                    tmrAnimation.Tick -= tmAnimation_Tick;
+                    tmrWait.Tick -= tmWait_Tick;
+                    tmrAnimation.Dispose();
+                    tmrWait.Dispose();
+
                 }
                 disposed = true;
             }
