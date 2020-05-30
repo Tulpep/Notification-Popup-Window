@@ -615,7 +615,8 @@ namespace Tulpep.NotificationWindow
 
                 if (disposing)
                 {
-                    frmPopup?.Dispose();
+                    if (frmPopup != null)
+                        frmPopup.Dispose();
                     tmrAnimation.Tick -= tmAnimation_Tick;
                     tmrWait.Tick -= tmWait_Tick;
                     tmrAnimation.Dispose();
